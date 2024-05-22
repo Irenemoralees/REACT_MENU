@@ -1,9 +1,10 @@
 
 function App() {
+  const [foods, setFoods] = useState ([]);
+  const [name, setName] = useState ()
   return (
-  <div>
-  <h1>Template</h1>
-</div>);
+    <div>App</div>
+  )
 }
 
 export default App

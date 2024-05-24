@@ -1,5 +1,5 @@
 const getDataApi = () => {
-    return fetch('https://mockapi.io/clone/664f8177ec9b4a4a602f06be')
+    return fetch('https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods')
       .then((response) => response.json())
       .then((data) => {
         const dataApi = data.map((item) => {
@@ -14,3 +14,5 @@ const getDataApi = () => {
         return dataApi;
       });
   };
+
+  export default getDataApi;

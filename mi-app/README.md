@@ -7,7 +7,7 @@ Planificación de un menú semanal.
  ## Lista de tareas
 
  - Instalar dependencias: react-router-dom, sass.
- - Definir componentes: ListFoods, Food, FilterbyName, FilterbyTipe, FilterbyDay, DetailsFood.
+ - Definir componentes: ListFoods, Food, FilterbyName, FilterbyType, FilterbyDay, DetailsFood.
  - Variables de Estado: foods -> [], name ->"", type -> [], day -> ""
  - Pintar Food (recorrer el array de ListFoods, coger la información necesaria y enviarla por props )
  - Pedir los datos de la API, cuando carga la página.

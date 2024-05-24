@@ -9,9 +9,9 @@ function App() {
   useEffect(() => {
     getDataApi().then((dataApi) => {
       setFoods(dataApi)
-
     })
   }, [])
+  
   return (
     <div>App</div>
   )

@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-function Login({ setUser, listUsers }) {
+function Login({ setUsers, listUsers }) {
     const [userLogin, setUserLogin] = useState({})
     const handleInput = (ev) => {
         const id = ev.target.id
@@ -11,7 +11,7 @@ function Login({ setUser, listUsers }) {
         ev.preventDefault()
         const findUser = listUsers.find((user) => user.email === userLogin.email && user.password === userLogin.password)
         if (findUser) {
-            setUser(findUser)
+            setUsers(findUser)
         }
 
     }

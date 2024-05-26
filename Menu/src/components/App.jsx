@@ -6,13 +6,16 @@ import Login from "./Users/Login/Login";
 import NavBar from "./Users/NavBar/NavBar";
 import AuthRoute from "./AuthRoute/AuthRoute";
 import Profile from "./Users/Profile/Profile";
+import axios from "axios";
+import DetailsFood from "./foods/DetailsFood/DetailsFood";
+
 
 function App() {
   const [foods, setFoods] = useState ([]);
-  const [name, setName] = useState ("");
+  const [name, setName] = useState ("all");
   const [type, setType] = useState ([]);
   const [day, setDay] = useState ("");
-  const [users, setUsers] = useState ([]);
+  const [user, setUser] = useState (null);
   const [listUsers, setListUsers] = useState ([]);
 
   useEffect(() => {
@@ -22,20 +25,24 @@ function App() {
   }, [])
 
   useEffect(() => {
-    getDataApiUsers().then((dataApiUsers) => {
-setListUsers (dataApiUsers)
-    })
+    axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users")
+      .then(response => {
+        setListUsers(response.data)
+      })
   }, [])
   
   return (
     <div>
     <NavBar />
+    
 
     <Routes>
       <Route path="/" element={<h2>Home</h2>} />
-      <Route path="/login" element={<Login listUsers={listUsers} setUser={setUsers} />} />
+      <Route path="/login" element={<Login listUsers={listUsers} setUser={setUser} />} />
       <Route path="/profile" element={
-        <AuthRoute user={users} component={<Profile />} />} />
+        <AuthRoute user={user}  foods={<Profile data={foods} />} />} />
+            <Route path="/detail/:idFoods" element={<DetailsFood data={foods} />} />
+     
     </Routes>
 
 

@@ -4,10 +4,10 @@ const getDataApi = () => {
       .then((data) => {
         const dataApi = data.map((item) => {
           return {
-            day: item.day,
-            name: item.name,
-            type: item.type,
-            description: item.description,
+            día: item.day,
+            nombre: item.name,
+            tipo: item.type,
+            descripción: item.description,
             id: item.id
           };
         });

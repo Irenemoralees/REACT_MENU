@@ -4,6 +4,7 @@ const getDataApi = () => {
       .then((data) => {
         const dataApi = data.map((item) => {
           return {
+            imagen: item.imagen,
             día: item.day,
             nombre: item.name,
             tipo: item.type,

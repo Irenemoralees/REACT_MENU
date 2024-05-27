@@ -1,12 +1,13 @@
 import { Navigate } from "react-router-dom"
 
 
-function AuthRoute({ user, component }) {
+
+function AuthRoute({ user, foods}) {
     if (!user)
         return <Navigate to="/login" />
 
     if (user)
-        return component
+        return foods
 }
 
 export default AuthRoute

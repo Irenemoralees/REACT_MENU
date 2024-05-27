@@ -6,6 +6,9 @@ import NavBar from "./Users/NavBar/NavBar";
 import Login from "./Users/Login/Login";
 import AuthRoute from "./AuthRoute/AuthRoute";
 import Profile from "./Users/Profile/Profile";
+import axios from "axios";
+import DetailsFood from "./foods/DetailsFood/DetailsFood";
+
 
 function App() {
   const [user, setUser] = useState(null); // Cambiamos 'users' a 'user' para manejar un solo usuario autenticado
@@ -15,10 +18,13 @@ function App() {
   const [selectedDay, setSelectedDay] = useState('');
 
   useEffect(() => {
-    getDataApiUsers().then((dataApiUsers) => {
-      console.log("Usuarios:", dataApiUsers); // Depuración
-      setListUsers(dataApiUsers);
-    });
+    axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users")
+    .then(response => {setListUsers(response.data)
+    })
+  }, [])
+
+
+  useEffect(() =>{
 
     apiFoods().then((data) => {
       console.log("Alimentos:", data); // Depuración

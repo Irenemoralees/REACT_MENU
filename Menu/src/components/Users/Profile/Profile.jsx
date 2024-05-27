@@ -1,9 +1,11 @@
-import ListFoods from "../../foods/ListFoods/ListFoods"
+import FilterbyType from "../../filters/FilterbyType/FilterbyType"
 
-function profile(data) {
+
+function profile(data, changeType) {
 return (
 <div>
-  <ListFoods foods={data}/>
+  
+<FilterbyType changeType = {changeType} />
 </div>
 )
   

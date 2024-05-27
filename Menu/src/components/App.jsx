@@ -1,6 +1,5 @@
 import { useEffect, useState} from "react";
 import { Route, Routes } from "react-router-dom";
-import getDataApiUsers from "../services/apiUsers";
 import getDataApi from "../services/apiFoods";
 import Login from "./Users/Login/Login";
 import NavBar from "./Users/NavBar/NavBar";
@@ -8,6 +7,7 @@ import AuthRoute from "./AuthRoute/AuthRoute";
 import Profile from "./Users/Profile/Profile";
 import axios from "axios";
 import DetailsFood from "./foods/DetailsFood/DetailsFood";
+
 
 
 function App() {
@@ -30,6 +30,17 @@ function App() {
         setListUsers(response.data)
       })
   }, [])
+
+
+  const changeType = (value) => {
+
+    if (type.includes(value)) {
+      const types = type.filter((item) => item !== value)
+      setType(types)
+    } else {
+      setType([...type, value])
+    }
+  }
   
   return (
     <div>
@@ -40,7 +51,12 @@ function App() {
       <Route path="/" element={<h2>Home</h2>} />
       <Route path="/login" element={<Login listUsers={listUsers} setUser={setUser} />} />
       <Route path="/profile" element={
-        <AuthRoute user={user}  foods={<Profile data={foods} />} />} />
+        <AuthRoute user={user}  foods={
+        <Profile
+         data={foods} 
+         changeType = {changeType}
+       
+         />} />} />
             <Route path="/detail/:idFoods" element={<DetailsFood data={foods} />} />
      
     </Routes>

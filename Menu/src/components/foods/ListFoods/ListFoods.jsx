@@ -13,4 +13,4 @@ function ListFoods({ foods }) {
     )
 }
 
-export default ListFoods
+export default ListFoods;

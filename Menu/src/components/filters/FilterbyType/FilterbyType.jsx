@@ -8,10 +8,14 @@ function FilterbyType({ changeType }) {
   }
   return (
       <div>
-          <input type="checkbox" name="" id="" value="almuerzo" onChange={handleChange} /> Almuerzo
-          <input type="checkbox" name="" id="" value="cena" onChange={handleChange} /> Cena
+          <input type="checkbox" name="" id="" value="Almuerzo" onChange={handleChange} /> Almuerzo
+          <input type="checkbox" name="" id="" value="Cena" onChange={handleChange} /> Cena
+
+
+          
+          
       </div>
   )
 }
 
-export default FilterbyType
+export default FilterbyType;

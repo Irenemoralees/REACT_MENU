@@ -1,14 +1,26 @@
-import FilterbyType from "../../filters/FilterbyType/FilterbyType"
 
+import FilterbyType from "../../filters/FilterbyType/FilterbyType";
+import FilterbyDay from "../../filters/FilterbyDay/FilterbyDay";
+import Food from "../../foods/Food/Food";
+import "./Profile.scss"
 
-function profile(data, changeType) {
+function Profile({ user, foods, filteredFoods, selectedDay, setSelectedDay, changeType }) {
+
 return (
-<div>
-  
-<FilterbyType changeType = {changeType} />
+<div className="profile-container">
+  <h2 className="profile-header">Bienvenido, {user.name}</h2>
+  <div className="profile-content">
+    <div className="filter-container">
+      <FilterbyDay selectedDay={selectedDay} setSelectedDay={setSelectedDay} filteredFoods={filteredFoods}/>
+    </div>
+    <div className="filter-container">
+      <FilterbyType changeType={changeType} />
+    </div>
+  </div>
+  <Food data={filteredFoods} />
 </div>
 )
-  
 }
 
-export default profile
+
+export default Profile;

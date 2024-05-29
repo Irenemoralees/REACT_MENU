@@ -1,91 +1,64 @@
-{/*import React, { useState } from "react";
-import "./Register.scss";
+import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Register.scss";
 
 function Register({ setListUsers }) {
-  const [userDetails, setUserDetails] = useState({ name: "",email: "", password: "" });
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
-  const handleInput = (ev) => {
-    const id = ev.target.id;
-    const value = ev.target.value;
-    setUserDetails({ ...userDetails, [id]: value });
-  };
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users", {
+                username,
+                password,
+                email,
+            });
+            setListUsers(prevUsers => [...prevUsers, response.data]);
+            navigate("/login");
+        } catch (error) {
+            console.error("Error registering user:", error);
+        }
+    };
 
-
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
-
-    try {
-      const response = await axios.post("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users", userDetails);
-      const newUser = response.data;
-      setListUsers((prevUsers) => [...prevUsers, newUser]);
-      alert("Usuario registrado con éxito");
-    } catch (error) {
-      console.error("Error al registrar el usuario:", error);
-      alert("Error al registrar el usuario");
-    }
-  };
-
-
-  return (
-    <div className="container">
-      <form className="register-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Nombre</label>
-        <input type="text" id="name" value={userDetails.name} onChange={handleInput} />
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" value={userDetails.email} onChange={handleInput} />
-        <label htmlFor="password">Contraseña</label>
-        <input type="password" id="password" value={userDetails.password} onChange={handleInput} />
-        <button type="submit">Registrarse</button>
-      </form>
-    </div>
-  );
-}
-
-export default Register;
-
-*/}
-
-
-import React, { useState } from "react";
-import "./Register.scss";
-import axios from "axios";
-
-function Register({ setListUsers }) {
-  const [userDetails, setUserDetails] = useState({ name: "", email: "", password: "" });
-
-  const handleInput = (ev) => {
-    const id = ev.target.id;
-    const value = ev.target.value;
-    setUserDetails({ ...userDetails, [id]: value });
-  };
-
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
-    try {
-      const response = await axios.post("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users", userDetails);
-      const newUser = response.data;
-      setListUsers((prevUsers) => [...prevUsers, newUser]);
-      alert("Usuario registrado con éxito");
-    } catch (error) {
-      console.error("Error al registrar el usuario:", error);
-      alert("Error al registrar el usuario");
-    }
-  };
-
-  return (
-    <div className="container">
-      <form className="register-form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Nombre</label>
-        <input type="text" id="name" value={userDetails.name} onChange={handleInput} />
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" value={userDetails.email} onChange={handleInput} />
-        <label htmlFor="password">Contraseña</label>
-        <input type="password" id="password" value={userDetails.password} onChange={handleInput} />
-        <button type="submit">Registrarse</button>
-      </form>
-    </div>
-  );
+    return (
+        <div>
+            <h2>Register</h2>
+            <form onSubmit={handleRegister}>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    );
 }
 
 export default Register;

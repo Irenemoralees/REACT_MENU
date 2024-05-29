@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "./Users/NavBar/NavBar";
+import Login from "./Users/Login/Login";
 import AuthRoute from "./AuthRoute/AuthRoute";
 import DetailsFood from "./foods/DetailsFood/DetailsFood";
-import Login from "./Users/Login/Login";
 import Register from "./Users/Register/Register";
-{/*import Home from "./Home/Home"*/}
+import Home from "./Home/Home"
 
 
 function App() {
@@ -32,16 +32,13 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
-    if (selectedDay) {
-      const filtered = foods.filter(food => 
-        food.day && food.day.toLowerCase() === selectedDay.toLowerCase()
-      );
-      setFilteredFoods(filtered);
-    } else {
-      setFilteredFoods(foods);
-    }
-  }, [selectedDay, foods]);
+    const filterFoods = foods.filter((food) => {
+        if (type.length === 0) {
+            return true;
+        } else {
+            return type.includes(food.type);
+        }
+    });
 
   const changeType = (value) => {
     if (type.includes(value)) {
@@ -78,7 +75,7 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<h2>Home</h2>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/register" element={<Register setListUsers={setListUsers} />} />
         <Route path="/login" element={<Login listUsers={listUsers} setUser={setUser} />} />
         <Route path="/profile" element={
@@ -96,6 +93,7 @@ function App() {
           />
         } />
         <Route path="/detail/:idFoods" element={<DetailsFood data={foods} />} />
+        <Route path="*" element = {<Navigate to= "/" />} />
       </Routes>
     </div>
   );

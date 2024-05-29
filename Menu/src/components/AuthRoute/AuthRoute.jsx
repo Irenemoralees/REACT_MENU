@@ -1,28 +1,9 @@
-{/*import { Navigate } from "react-router-dom"
 
-
-
-function AuthRoute({ user}) {
-    if (!user)
-        return <Navigate to="/login" />
-
-    if (user)
-        return  <Profile
-    data={foods} 
-    changeType = {changeType}
-    user={user}
-  
-    />
-}
-
-export default AuthRoute
-
-*/}
 
 import { Navigate } from "react-router-dom";
-import Profile from "../Users/Profile/Profile"; // Asegúrate de importar Profile
+import Profile from "../Users/Profile/Profile"; 
 
-function AuthRoute({ user, foods, filteredFoods, selectedDay, setSelectedDay, changeType,type, setType }) {
+function AuthRoute({ user, foods, filteredFoods, selectedDay, setSelectedDay, changeType,type, addMenu, deleteMenu }) {
   if (!user) {
     return <Navigate to="/login" />;
   }
@@ -35,6 +16,9 @@ function AuthRoute({ user, foods, filteredFoods, selectedDay, setSelectedDay, ch
       selectedDay={selectedDay}
       setSelectedDay={setSelectedDay}
       changeType={changeType}
+      type={type}
+      addMenu={addMenu}
+      deleteMenu={deleteMenu}
     />
   );
 }

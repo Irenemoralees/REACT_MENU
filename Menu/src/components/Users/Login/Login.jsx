@@ -22,13 +22,16 @@ import "./Login.scss";
       
 
   return (
-<form onChange={handleInput}>
+    <div className="container">
+<form className = "login-form"onChange={handleInput}>
   <label htmlFor="">Email</label>
   <input type="text"id="email"/>
   <label htmlFor="">Password</label>
   <input type="password"id="password"/>
   <input type="submit"value="Iniciar sesion"onClick={handleClick}/>
   </form>
+  </div>
+
   )
 }
 

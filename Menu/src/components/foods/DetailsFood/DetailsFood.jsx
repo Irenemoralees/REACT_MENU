@@ -12,7 +12,7 @@ function DetailsFood({ data }) {
                 <h2>{findFood.type}</h2>
                 <p>{findFood.description}</p>
             </article>
-            <Link to="/" className="button"> IR A HOME </Link>
+            <Link to="/" className="home"> IR A HOME </Link>
         </>
     )
 }

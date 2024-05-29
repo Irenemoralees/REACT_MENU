@@ -6,6 +6,8 @@ function FilterbyType({ changeType }) {
  
       changeType(ev.target.value)
   }
+
+  
   return (
       <div>
           <input type="checkbox" name="" id="" value="Almuerzo" onChange={handleChange} /> Almuerzo

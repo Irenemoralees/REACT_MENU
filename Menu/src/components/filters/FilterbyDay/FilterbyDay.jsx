@@ -1,29 +1,35 @@
-import React from 'react';
 
-const FoodList = ({ foods, filteredFoods, selectedDay, setSelectedDay }) => {
+
+import React from 'react';
+import "./filterByDay.scss"
+
+const FilterbyDay = ({ filteredFoods, selectedDay, setSelectedDay }) => {
   const handleDayChange = (e) => {
     setSelectedDay(e.target.value);
   };
 
   return (
-    <div>
-      <select onChange={handleDayChange} value={selectedDay}>
-        <option value="">Selecciona un día</option>
-        <option value="lunes">Lunes</option>
-        <option value="martes">Martes</option>
-        <option value="miércoles">Miércoles</option>
-        <option value="jueves">Jueves</option>
-        <option value="viernes">Viernes</option>
-        <option value="sábado">Sábado</option>
-        <option value="domingo">Domingo</option>
+    <div className="filter-by-day">
+      <select className="day-select" onChange={handleDayChange} value={selectedDay}>
+        <option className='optionStyle' value="">Selecciona un día</option>
+        <option className='optionStyle' value="lunes">Lunes</option>
+        <option className='optionStyle' value="martes">Martes</option>
+        <option className='optionStyle' value="miércoles">Miércoles</option>
+        <option className='optionStyle' value="jueves">Jueves</option>
+        <option className='optionStyle' value="viernes">Viernes</option>
+        <option className='optionStyle' value="sábado">Sábado</option>
+        <option className='optionStyle' value="domingo">Domingo</option>
       </select>
 
-      <ul>
+      <ul className="food-list">
         {filteredFoods.map(food => (
-          <li key={food.id}>
-            <h3>{food.nombre}</h3>
-            <p>Tipo: {food.tipo}</p>
-            <p>{food.descripción}</p>
+          <li key={food.id} className="food-item">
+            <div className="food-details">
+              <h3 className="food-name">{food.name}</h3>
+              <p className="food-description">{food.description}</p>
+              <p className="food-type">{food.type}</p>
+            </div>
+            <img className="food-image" src={food.imagen} alt="" />
           </li>
         ))}
       </ul>
@@ -31,7 +37,4 @@ const FoodList = ({ foods, filteredFoods, selectedDay, setSelectedDay }) => {
   );
 };
 
-export default FoodList;
-
-
-
+export default FilterbyDay;

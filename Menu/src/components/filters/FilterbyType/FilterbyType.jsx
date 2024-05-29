@@ -1,9 +1,21 @@
 
 
-function FilterbyType() {
+function FilterbyType({ changeType }) {
+
+  const handleChange = (ev) => {
+ 
+      changeType(ev.target.value)
+  }
   return (
-    <div>FilterbyType</div>
+      <div>
+          <input type="checkbox" name="" id="" value="Almuerzo" onChange={handleChange} /> Almuerzo
+          <input type="checkbox" name="" id="" value="Cena" onChange={handleChange} /> Cena
+
+
+          
+          
+      </div>
   )
 }
 
-export default FilterbyType
+export default FilterbyType;

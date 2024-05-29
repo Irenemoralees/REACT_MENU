@@ -1,23 +1,26 @@
-import React from "react";
-import FoodList from "../../filters/FilterbyDay/FilterbyDay";
 
-const Profile = ({ user, foods, filteredFoods, selectedDay, setSelectedDay }) => {
-  if (!user) {
-    return <h2>Por favor, inicia sesión</h2>;
-  }
+import FilterbyType from "../../filters/FilterbyType/FilterbyType";
+import FilterbyDay from "../../filters/FilterbyDay/FilterbyDay";
+import Food from "../../foods/Food/Food";
+import "./Profile.scss"
 
-  return (
-    <div>
-      <h2>Bienvenido, {user.name}</h2>
-      <FoodList
-        foods={foods}
-        filteredFoods={filteredFoods}
-        selectedDay={selectedDay}
-        setSelectedDay={setSelectedDay}
-      />
+function Profile({ user, foods, filteredFoods, selectedDay, setSelectedDay, changeType }) {
+
+return (
+<div className="profile-container">
+  <h2 className="profile-header">Bienvenido, {user.name}</h2>
+  <div className="profile-content">
+    <div className="filter-container">
+      <FilterbyDay selectedDay={selectedDay} setSelectedDay={setSelectedDay} filteredFoods={filteredFoods}/>
     </div>
-  );
-};
+    <div className="filter-container">
+      <FilterbyType changeType={changeType} />
+    </div>
+  </div>
+  <Food data={filteredFoods} />
+</div>
+)
+}
+
 
 export default Profile;
-

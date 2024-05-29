@@ -1,69 +1,96 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import getDataApiUsers from "../services/apiUsers";
-import apiFoods from "../services/apiFoods"; // Asegúrate de que la ruta sea correcta
+import { Route, Routes, Navigate } from "react-router-dom";
+import axios from "axios";
 import NavBar from "./Users/NavBar/NavBar";
 import Login from "./Users/Login/Login";
 import AuthRoute from "./AuthRoute/AuthRoute";
-import Profile from "./Users/Profile/Profile";
+import DetailsFood from "./foods/DetailsFood/DetailsFood";
+import Home from "./Home/Home"; 
+import Register from "./Users/Register/Register";
 
 function App() {
-  const [user, setUser] = useState(null); // Cambiamos 'users' a 'user' para manejar un solo usuario autenticado
-  const [listUsers, setListUsers] = useState([]);
-  const [foods, setFoods] = useState([]);
-  const [filteredFoods, setFilteredFoods] = useState([]);
-  const [selectedDay, setSelectedDay] = useState('');
+    const [user, setUser] = useState(null);
+    const [listUsers, setListUsers] = useState([]);
+    const [foods, setFoods] = useState([]);
+    const [filteredFoods, setFilteredFoods] = useState([]);
+    const [selectedDay, setSelectedDay] = useState('');
+    const [type, setType] = useState([]);
 
-  useEffect(() => {
-    getDataApiUsers().then((dataApiUsers) => {
-      console.log("Usuarios:", dataApiUsers); // Depuración
-      setListUsers(dataApiUsers);
+    useEffect(() => {
+        axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods")
+            .then(response => {
+                setFoods(response.data);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users")
+            .then(response => {
+                setListUsers(response.data);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (selectedDay) {
+            const filtered = foods.filter(food =>
+                food.day && food.day.toLowerCase() === selectedDay.toLowerCase()
+            );
+            setFilteredFoods(filtered);
+        } else {
+            setFilteredFoods(foods);
+        }
+    }, [selectedDay, foods]);
+
+    const changeType = (value) => {
+        if (type.includes(value)) {
+            const types = type.filter((item) => item !== value);
+            setType(types);
+        } else {
+            setType([...type, value]);
+        }
+    };
+
+    const filterFoods = foods.filter((food) => {
+        if (type.length === 0) {
+            return true;
+        } else {
+            return type.includes(food.type);
+        }
     });
 
-    apiFoods().then((data) => {
-      console.log("Alimentos:", data); // Depuración
-      setFoods(data);
-      setFilteredFoods(data); // Inicialmente mostrar todos los alimentos
-    });
-  }, []);
-
-  useEffect(() => {
-    console.log("Día seleccionado:", selectedDay); // Depuración
-    if (selectedDay) {
-      const filtered = foods.filter(food => food.día.toLowerCase() === selectedDay.toLowerCase());
-      setFilteredFoods(filtered);
-    } else {
-      setFilteredFoods(foods); // Mostrar todos los alimentos si no hay día seleccionado
-    }
-    console.log("Alimentos filtrados:", filteredFoods); // Depuración
-  }, [selectedDay, foods]);
-
-  return (
-    <div>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<h2>Home</h2>} />
-        <Route path="/login" element={<Login listUsers={listUsers} setUser={setUser} />} />
-        <Route path="/profile" element={
-          <AuthRoute 
-            user={user} 
-            component={
-              <Profile 
-                user={user} 
-                foods={foods} 
-                filteredFoods={filteredFoods} 
-                selectedDay={selectedDay} 
-                setSelectedDay={setSelectedDay} 
-              />
-            } 
-          />
-        } />
-      </Routes>
-    </div>
-  );
+    return (
+        <div>
+            <NavBar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/register" element={<Register setListUsers={setListUsers} />} />
+                <Route path="/login" element={<Login listUsers={listUsers} setUser={setUser} />} />
+                <Route path="/profile" element={
+                    <AuthRoute
+                        user={user}
+                        foods={foods}
+                        filteredFoods={filteredFoods}
+                        selectedDay={selectedDay}
+                        setSelectedDay={setSelectedDay}
+                        changeType={changeType}
+                        type={type}
+                        setType={setType}
+                    />
+                } />
+                <Route path="/detail/:idFoods" element={<DetailsFood data={foods} />} />
+                <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
+
+
+
+
+
+
 
 
 

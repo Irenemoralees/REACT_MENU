@@ -1,24 +1,25 @@
 
 .profile-container {
     padding: 20px;
-    background-color:rgb(35, 149, 153);
+  
+    width: 1500px;
+    height: 1000px;
+    margin-top: 270px;
+
   }
   
   .profile-header {
     font-family: 'Times New Roman', serif;
-    font-size: 40px;
+    font-size: 60px;
     margin-bottom: 20px;
+    color: white;
+ 
+    
   }
-  
-  .profile-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
-  }
-  
+ 
   
   .filter-container {
-    border: 3px solid black;
+    border: 5px solid black;
     border-radius: 15px;
     padding: 20px;
   }

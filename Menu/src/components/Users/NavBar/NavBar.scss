@@ -1,10 +1,11 @@
 .navHeader {
 
-    background-color:#81ece7;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(20, 20, 199, 0.5);
-    width: 1250px;
-    margin-left: 40px;
+    background-color: rgb(97, 14, 5);
+    padding: 18px;
+    box-shadow: 0 2px 4px black;
+    z-index: 1000;
+    width: 1450px;
+    left: 70px;
     border-radius: 20px;
     position: fixed;
     top: 0;
@@ -34,7 +35,7 @@
     transition: color 1.5s ease;
   
     &:hover {
-      color: #02436e;
+      color:rgb(227, 176, 122) ;
     }
   }
  

@@ -2,13 +2,14 @@
 
 .filter-by-day {
     margin-bottom: 20px;
+    z-index: 1;
   
     .day-select {
       padding: 10px;
       font-size: 20px;
       font-family:Georgia, 'Times New Roman', Times, serif;
       border-radius: 10px;
-      border: 5px solid #81ece7;
+      border: 5px solid rgb(20, 83, 4);
       margin-bottom: 20px;
       width: 250px;
       box-sizing: border-box;
@@ -30,17 +31,21 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-  
+      position: absolute;
+      z-index: 1;
+      margin-top: 500px;
+    
       .food-item {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        background-color: #81ece7;
+        background-color: rgb(227, 176, 122);
         border-radius: 10px;
         padding: 10px;
         width: 1000px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
+      
         opacity: 0;
         animation: fadeIn 0.5s ease forwards;
   
@@ -68,14 +73,14 @@
           }
   
           .food-description {
-            color: #02436e;
+            color: rgb(20, 83, 4);
             font-size: 25px;
             margin-bottom: 20px;
           }
   
           .food-type {
             font-weight: bold;
-            color: #110a75;
+            color:rgb(72, 107, 6) ;
           }
         }
   

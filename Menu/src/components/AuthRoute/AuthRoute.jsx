@@ -20,7 +20,6 @@ function AuthRoute({ user, foods, filteredFoods, selectedDay, setSelectedDay, ch
       addMenu={addMenu}
       deleteMenu={deleteMenu}
     />
-  );
+  )
 }
-
 export default AuthRoute;

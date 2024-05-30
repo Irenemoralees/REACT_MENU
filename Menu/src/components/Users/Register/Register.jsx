@@ -14,8 +14,9 @@ function Register({ setListUsers }) {
         try {
             const response = await axios.post("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users", {
                 username,
-                password,
                 email,
+                password,
+                
             });
             setListUsers(prevUsers => [...prevUsers, response.data]);
             navigate("/login");
@@ -26,6 +27,7 @@ function Register({ setListUsers }) {
 
     return (
         <div className="container">
+           
             <form className="register-form" onSubmit={handleRegister}>
                 <div>
                     <label>Username:</label>
@@ -36,15 +38,7 @@ function Register({ setListUsers }) {
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
+              
                 <div>
                     <label>Email:</label>
                     <input
@@ -54,7 +48,17 @@ function Register({ setListUsers }) {
                         required
                     />
                 </div>
-                <button type="submit">Register</button>
+
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Registrate</button>
             </form>
         </div>
     );

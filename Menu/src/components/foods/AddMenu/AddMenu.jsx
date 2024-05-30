@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './AddMenu.scss'; // Importa tu archivo SCSS aquí
+import './AddMenu.scss'; 
 
 const AddMenu = ({ addMenu }) => {
   const [menuData, setMenuData] = useState({
     day: '',
-    imagen: null,
+    imageUrl: '',
     name: '',
     type: '',
     description: ''
@@ -15,25 +15,20 @@ const AddMenu = ({ addMenu }) => {
     setMenuData({ ...menuData, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setMenuData({ ...menuData, imagen: file });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting menu data:", menuData);
+ 
     await addMenu(menuData);
     setMenuData({
       day: '',
-      imagen: null,
+      imageUrl: '',
       name: '',
       type: '',
       description: ''
     });
   };
 
-  console.log("AddMenu props:", addMenu);
+
 
   return (
     <div className="add-menu-container">
@@ -49,12 +44,12 @@ const AddMenu = ({ addMenu }) => {
           />
         </div>
         <div>
-          <label>Imagen:</label>
+          <label>URL de la Imagen:</label>
           <input
-            type="file"
-            name="imagen"
-            accept="image/*"
-            onChange={handleImageChange}
+            type="text"
+            name="imageUrl"
+            value={menuData.imageUrl}
+            onChange={handleChange}
             required
           />
         </div>

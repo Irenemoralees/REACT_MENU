@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods")
       .then(response => {
-        
+        setFoods(response.data);
         setFilteredFoods(response.data);
       });
   }, []);
@@ -32,17 +32,16 @@ function App() {
       });
   }, []);
 
-  useEffect(()=> {
-    if (selectedDay){
-      const filtered = foods.filter(food => 
-        food.day && food.day.toLowerCase() === selectedDay.toLowerCase()
-
-      );
-      setFilteredFoods(filtered);
-    }else {
-      setFilteredFoods(foods);
+  useEffect(() => {
+    if (selectedDay) {
+        const filtered = foods.filter(food =>
+            food.day && food.day.toLowerCase() === selectedDay.toLowerCase()
+        );
+        setFilteredFoods(filtered);
+    } else {
+        setFilteredFoods(foods);
     }
-  },[selectedDay,foods]);
+}, [selectedDay, foods]);
 
     const filterFoods = foods.filter((food) => {
         if (type.length === 0) {
@@ -71,18 +70,17 @@ function App() {
       alert("Error al añadir el menú");
     }
   };
-
-  const deleteMenu = async (id) => {
+  const deleteMenu = async (menuName) => {
     try {
-      await axios.delete(`https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods/${id}`);
-      setFoods(foods.filter(menu => menu.id !== id));
-      setFilteredFoods(filteredFoods.filter(menu => menu.id !== id));
+      await axios.delete(`https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods/${encodeURIComponent(menuName)}`);
+      setFoods(foods.filter(menu => menu.name !== menuName));
+      setFilteredFoods(filteredFoods.filter(menu => menu.name !== menuName));
       alert("Menú eliminado correctamente");
     } catch (error) {
       alert("Error al eliminar el menú");
     }
   };
-
+  
   return (
     <div>
       <NavBar />
@@ -105,10 +103,15 @@ function App() {
           />
         } />
         <Route path="/detail/:idFoods" element={<DetailsFood data={foods} />} />
-        <Route path="*" element = {<Navigate to= "/" />} />
+        <Route path="*" element= {<Navigate to ="/" />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+
+
+

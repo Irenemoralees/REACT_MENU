@@ -20,7 +20,9 @@ const FilterbyDay = ({ filteredFoods, selectedDay, setSelectedDay }) => {
         <option className='optionStyle' value="sábado">Sábado</option>
         <option className='optionStyle' value="domingo">Domingo</option>
       </select>
-
+      
+     <section >
+      <div className='div'>
       <ul className="food-list">
         {filteredFoods.map(food => (
           <li key={food.id} className="food-item">
@@ -33,6 +35,8 @@ const FilterbyDay = ({ filteredFoods, selectedDay, setSelectedDay }) => {
           </li>
         ))}
       </ul>
+      </div>
+      </section>
     </div>
   );
 };

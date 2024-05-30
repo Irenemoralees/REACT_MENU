@@ -1,13 +1,14 @@
 .navHeader {
 
-    background-color:#81ece7;
+    background-color:#5895e6;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(20, 20, 199, 0.5);
-    width: 1250px;
-    margin-left: 40px;
+    z-index: 1000;
     border-radius: 20px;
     position: fixed;
     top: 0;
+    width: 1450px;
+    left: 20px;
   }
   
   .navBar {

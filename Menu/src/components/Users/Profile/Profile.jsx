@@ -5,6 +5,8 @@ import Food from "../../foods/Food/Food";
 import AddMenu from "../../foods/AddMenu/AddMenu";
 import "./Profile.scss";
 
+
+
 function Profile({ user, foods, filteredFoods, selectedDay, setSelectedDay, changeType, addMenu, deleteMenu }) {
   return (
     <div className="profile-container">
@@ -19,6 +21,7 @@ function Profile({ user, foods, filteredFoods, selectedDay, setSelectedDay, chan
       </div>
       <Food data={filteredFoods} deleteMenu={deleteMenu} />
       <AddMenu addMenu={addMenu} />
+     
     </div>
   );
 }

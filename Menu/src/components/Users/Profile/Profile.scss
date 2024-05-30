@@ -2,6 +2,7 @@
 .profile-container {
     padding: 20px;
     background-color:rgb(35, 149, 153);
+   
   }
   
   .profile-header {
@@ -14,6 +15,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr; 
     gap: 20px; 
+    z-index: 1000;
+    
   }
   
   

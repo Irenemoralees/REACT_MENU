@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods")
       .then(response => {
-        setFoods(response.data);
+        
         setFilteredFoods(response.data);
       });
   }, []);
@@ -31,6 +31,18 @@ function App() {
         setListUsers(response.data);
       });
   }, []);
+
+  useEffect(()=> {
+    if (selectedDay){
+      const filtered = foods.filter(food => 
+        food.day && food.day.toLowerCase() === selectedDay.toLowerCase()
+
+      );
+      setFilteredFoods(filtered);
+    }else {
+      setFilteredFoods(foods);
+    }
+  },[selectedDay,foods]);
 
     const filterFoods = foods.filter((food) => {
         if (type.length === 0) {

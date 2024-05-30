@@ -15,7 +15,7 @@ function App() {
   const [foods, setFoods] = useState([]);
   const [filteredFoods, setFilteredFoods] = useState([]);
   const [selectedDay, setSelectedDay] = useState('');
-  const [type, setType] = useState([]);
+
 
   useEffect(() => {
     axios.get("https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods")
@@ -43,22 +43,6 @@ function App() {
     }
 }, [selectedDay, foods]);
 
-    const filterFoods = foods.filter((food) => {
-        if (type.length === 0) {
-            return true;
-        } else {
-            return type.includes(food.type);
-        }
-    });
-
-  const changeType = (value) => {
-    if (type.includes(value)) {
-      const types = type.filter((item) => item !== value);
-      setType(types);
-    } else {
-      setType([...type, value]);
-    }
-  };
 
   const addMenu = async (menu) => {
     try {
@@ -95,9 +79,6 @@ function App() {
             filteredFoods={filteredFoods} 
             selectedDay={selectedDay} 
             setSelectedDay={setSelectedDay} 
-            changeType={changeType}
-            type={type}
-            setType={setType}
             addMenu={addMenu}
             deleteMenu={deleteMenu}
           />

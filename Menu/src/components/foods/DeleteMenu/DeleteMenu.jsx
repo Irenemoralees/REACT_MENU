@@ -24,7 +24,7 @@ const DeleteMenu = ({ deleteMenu }) => {
         <div>
           <label>Nombre del Menú:</label>
           <input
-            type="text"
+            type="text" placeholder='Nombre del menú'
             value={menuName}
             onChange={handleChange}
             required

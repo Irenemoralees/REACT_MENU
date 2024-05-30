@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Register.scss";
 
 function Register({ setListUsers }) {
     const [username, setUsername] = useState("");
@@ -24,9 +25,8 @@ function Register({ setListUsers }) {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleRegister}>
+        <div className="container">
+            <form className="register-form" onSubmit={handleRegister}>
                 <div>
                     <label>Username:</label>
                     <input

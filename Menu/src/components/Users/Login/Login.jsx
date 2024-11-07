@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
+import Swal from 'sweetalert2';
 
 function Login({ setUser, listUsers }) {
   const [userLogin, setUserLogin] = useState({});
@@ -11,6 +12,8 @@ function Login({ setUser, listUsers }) {
     setUserLogin({ ...userLogin, [id]: ev.target.value });
   };
 
+
+
   const handleClick = (ev) => {
     ev.preventDefault();
     const findUser = listUsers.find(
@@ -20,9 +23,14 @@ function Login({ setUser, listUsers }) {
       setUser(findUser);
       navigate("/profile");
     } else {
-      alert("Usuario o contraseña no encontrado");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Usuario o contraseña no encontrado',
+      });
     }
   };
+  
 
   return (
     <div className="container">

@@ -1,43 +1,115 @@
+/* Estilos generales */
 .navHeader {
+  background-color: rgb(97, 14, 5);
+  padding: 18px;
+  box-shadow: 0 2px 4px black;
+  z-index: 1000;
+  width: 100%;
+  border-radius: 20px;
+  position: fixed;
+  top: 0;
+}
 
-    background-color: rgb(97, 14, 5);
-    padding: 18px;
-    box-shadow: 0 2px 4px black;
-    z-index: 1000;
-    width: 1450px;
-    left: 70px;
-    border-radius: 20px;
-    position: fixed;
-    top: 0;
-    width: 1450px;
-    left: 20px;
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuToggle {
+  display: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  margin: 0 1rem;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 1.5s ease;
+}
+
+.navLink:hover {
+  color: rgb(227, 176, 122);
+}
+
+/* @media para teléfonos (pantallas pequeñas) */
+@media (max-width: 600px) {
+  .menuToggle {
+    display: block;
+ margin-left: 40px;
   }
-  
-  .navBar {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
+
   .navList {
-    list-style: none;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgb(97, 14, 5);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 999;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .navList.show {
     display: flex;
-    padding: 0;
-    margin: 0;
   }
-  
+
   .navItem {
-    margin: 0 1rem;
+    margin: 0.5rem 0;
+    text-align: center;
   }
-  
+
   .navLink {
-    
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 1.5s ease;
-  
-    &:hover {
-      color:rgb(227, 176, 122) ;
-    }
+    font-size: 1rem;
+    padding: 10px 0;
+
   }
+}
+
+/* @media para tabletas (pantallas medianas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .navHeader {
+    width: 95%; /* Ajuste de ancho */
+    left: 2.5%; /* Centrado */
+  }
+
+  .navList {
+    justify-content: space-between;
+  }
+
+  .navItem {
+    margin: 0.75rem;
+  }
+
+  .navLink {
+    font-size: 1.1rem;
+  }
+}
+
+/* @media para ordenadores (pantallas grandes) */
+@media (min-width: 1025px) {
+  .navHeader {
+    width: 1450px; /* Mantiene el ancho inicial */
+  }
+
+  .navLink {
+    font-size: 1.2rem;
+  }
+}
+
+
  

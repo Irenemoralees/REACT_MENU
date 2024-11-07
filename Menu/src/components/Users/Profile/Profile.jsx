@@ -8,7 +8,7 @@ import "./Profile.scss";
 function Profile({ user, filteredFoods, selectedDay, setSelectedDay,  addMenu, deleteMenu }) {
   return (
     <div className="profile-container">
-      <h2 className="profile-header">Bienvenido {user.name} y buen provecho 😋🍽️</h2>
+      <h2 className="profile-header">Bienvenido {user.username} y buen provecho 😋🍽️</h2>
       <div className="profile-content">
         <section className="filter-container">
           <FilterbyDay selectedDay={selectedDay} setSelectedDay={setSelectedDay} filteredFoods={filteredFoods} />

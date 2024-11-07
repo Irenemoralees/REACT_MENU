@@ -56,14 +56,28 @@ function App() {
   };
   const deleteMenu = async (menuName) => {
     try {
-      await axios.delete(`https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods/${encodeURIComponent(menuName)}`);
-      setFoods(foods.filter(menu => menu.name !== menuName));
-      setFilteredFoods(filteredFoods.filter(menu => menu.name !== menuName));
-      alert("Menú eliminado correctamente");
+    
+      const response = await axios.get('https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods');
+      const menuToDelete = response.data.find(menu => menu.name === menuName);
+  
+      if (menuToDelete) {
+        
+        await axios.delete(`https://664f8177ec9b4a4a602f06bd.mockapi.io/Foods/${menuToDelete.id}`);
+        
+        
+        setFoods(foods.filter(menu => menu.name !== menuName));
+        setFilteredFoods(filteredFoods.filter(menu => menu.name !== menuName));
+  
+        alert("Menú eliminado correctamente");
+      } else {
+        alert("Menú no encontrado");
+      }
     } catch (error) {
+      console.error(error);
       alert("Error al eliminar el menú");
     }
   };
+  
   
   return (
     <div>

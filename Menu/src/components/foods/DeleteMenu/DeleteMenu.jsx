@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './DeleteMenu.scss'; 
 
+import React, { useState } from 'react';
+import './DeleteMenu.scss';
 
 const DeleteMenu = ({ deleteMenu }) => {
   const [menuName, setMenuName] = useState('');
@@ -9,14 +9,11 @@ const DeleteMenu = ({ deleteMenu }) => {
     setMenuName(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    await deleteMenu(menuName);
+    deleteMenu(menuName);  
     setMenuName('');
   };
-
-
 
   return (
     <div className="delete-menu-container">
@@ -24,7 +21,8 @@ const DeleteMenu = ({ deleteMenu }) => {
         <div>
           <label>Nombre del Menú:</label>
           <input
-            type="text" placeholder='Nombre del menú'
+            type="text"
+            placeholder="Nombre del menú"
             value={menuName}
             onChange={handleChange}
             required

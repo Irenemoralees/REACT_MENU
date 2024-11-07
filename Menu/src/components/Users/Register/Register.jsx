@@ -13,7 +13,7 @@ function Register({ setListUsers }) {
         e.preventDefault();
         try {
             const response = await axios.post("https://664f8177ec9b4a4a602f06bd.mockapi.io/Users", {
-                username,
+                name,
                 email,
                 password,
                 

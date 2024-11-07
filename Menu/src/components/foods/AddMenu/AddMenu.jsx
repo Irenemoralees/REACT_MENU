@@ -4,7 +4,7 @@ import './AddMenu.scss';
 const AddMenu = ({ addMenu }) => {
   const [menuData, setMenuData] = useState({
     day: '',
-    imageUrl: '',
+    imagen: '',
     name: '',
     type: '',
     description: ''
@@ -21,7 +21,7 @@ const AddMenu = ({ addMenu }) => {
     await addMenu(menuData);
     setMenuData({
       day: '',
-      imageUrl: '',
+      imagen: '',
       name: '',
       type: '',
       description: ''
@@ -48,7 +48,7 @@ const AddMenu = ({ addMenu }) => {
           <input
             type="text"
             name="imageUrl"
-            value={menuData.imageUrl}
+            value={menuData.imagen}
             onChange={handleChange}
             required
           />

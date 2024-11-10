@@ -12,7 +12,6 @@ function NavBar() {
                         <li className="navItem">
                         <Link to="/register" className="navLink">Registrate</Link>
                     </li>
-                 
                     <li className="navItem">
                         <Link to="/login" className="navLink">Login</Link>
                     </li>

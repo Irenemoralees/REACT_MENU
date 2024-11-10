@@ -72,7 +72,7 @@
     @media (min-width: 601px) and (max-width: 1024px) {
       .navHeader {
         width: 95%;
-        left: 2.5%; 
+
         padding: 15px;
       }
     
@@ -92,11 +92,17 @@
     @media (min-width: 1025px) {
       .navHeader {
         width: 1450px;
-        left: auto;
+        left: 70px;
+       
       }
     
       .navLink {
         font-size: 1.2rem;
+      }
+
+      .navItem {
+  margin-left: -50px;
+     margin-right: 250px;
       }
     }
     

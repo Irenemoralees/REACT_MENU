@@ -7,6 +7,8 @@ function Register({ setListUsers }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
@@ -16,7 +18,6 @@ function Register({ setListUsers }) {
                 username,
                 email,
                 password,
-                
             });
             setListUsers(prevUsers => [...prevUsers, response.data]);
             navigate("/login");
@@ -25,9 +26,24 @@ function Register({ setListUsers }) {
         }
     };
 
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+
+        
+        const hasMinLength = newPassword.length >= 8;
+        const hasLetters = /[a-zA-Z]/.test(newPassword);
+        const hasNumbers = /\d/.test(newPassword);
+
+        if (hasMinLength && hasLetters && hasNumbers) {
+            setError(""); 
+        } else {
+            setError("La contraseña debe tener al menos 8 caracteres e incluir letras y números.");
+        }
+    };
+
     return (
         <div className="container">
-           
             <form className="register-form" onSubmit={handleRegister}>
                 <div>
                     <label>Username:</label>
@@ -38,7 +54,6 @@ function Register({ setListUsers }) {
                         required
                     />
                 </div>
-              
                 <div>
                     <label>Email:</label>
                     <input
@@ -48,15 +63,15 @@ function Register({ setListUsers }) {
                         required
                     />
                 </div>
-
                 <div>
                     <label>Password:</label>
                     <input
                         type="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
                         required
                     />
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                 </div>
                 <button type="submit">Registrate</button>
             </form>

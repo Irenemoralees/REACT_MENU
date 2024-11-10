@@ -47,7 +47,7 @@ const AddMenu = ({ addMenu }) => {
           <label>URL de la Imagen:</label>
           <input
             type="text"
-            name="imageUrl"
+            name="imagen"
             value={menuData.imagen}
             onChange={handleChange}
             required

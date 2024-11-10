@@ -7,6 +7,7 @@ import AuthRoute from "./AuthRoute/AuthRoute";
 import DetailsFood from "./foods/DetailsFood/DetailsFood";
 import Register from "./Users/Register/Register";
 import Home from "./Home/Home"
+import Swal from 'sweetalert2';
 
 
 function App() {
@@ -50,8 +51,19 @@ function App() {
       const newMenu = response.data;
       setFoods([...foods, newMenu]);
       setFilteredFoods([...filteredFoods, newMenu]);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Correcto',
+        text: 'Menú añadido correctamente',
+      });
     } catch (error) {
-      alert("Error al añadir el menú");
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error al añadir el menú',
+      });
     }
   };
   const deleteMenu = async (menuName) => {
@@ -68,13 +80,26 @@ function App() {
         setFoods(foods.filter(menu => menu.name !== menuName));
         setFilteredFoods(filteredFoods.filter(menu => menu.name !== menuName));
   
-        alert("Menú eliminado correctamente");
+        Swal.fire({
+          icon: 'success',
+          title: 'Correcto',
+          text: 'Menú eliminado correctamente',
+        });
+
       } else {
-        alert("Menú no encontrado");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Menú no encontrado',
+        });
       }
     } catch (error) {
       console.error(error);
-      alert("Error al eliminar el menú");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error al eliminar el menú',
+      });
     }
   };
   
